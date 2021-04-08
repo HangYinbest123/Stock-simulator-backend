@@ -6,6 +6,7 @@ import javax.persistence.*;
 @Entity
 public class UserBalance {
     @Id
+    @Column(name="sUserId")
     private String userId;
 
     @OneToOne(fetch = FetchType.LAZY)
@@ -13,6 +14,9 @@ public class UserBalance {
 
     @Column
     private double balance;
+
+    @Column
+    private double directDeposit;
 
     public User getUser() {
         return user;
@@ -36,5 +40,13 @@ public class UserBalance {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public double getDirectDeposit() {
+        return directDeposit;
+    }
+
+    public void setDirectDeposit(double directDeposit) {
+        this.directDeposit = directDeposit;
     }
 }

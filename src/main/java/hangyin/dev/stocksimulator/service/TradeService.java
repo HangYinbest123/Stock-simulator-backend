@@ -1,6 +1,7 @@
 package hangyin.dev.stocksimulator.service;
 
 import hangyin.dev.stocksimulator.dto.AddBalanceRequest;
+import hangyin.dev.stocksimulator.dto.balance.AddBalanceReason;
 import hangyin.dev.stocksimulator.dto.trade.TradeRequest;
 import hangyin.dev.stocksimulator.dto.trade.TradeType;
 import hangyin.dev.stocksimulator.entity.User;
@@ -53,7 +54,7 @@ public class TradeService {
             // deduct balance
             AddBalanceRequest addBalanceRequest = new AddBalanceRequest();
             addBalanceRequest.setAmount(-1 * totalCost);
-            balanceService.addUserBalance(userId, addBalanceRequest);
+            balanceService.addUserBalance(userId, addBalanceRequest, AddBalanceReason.BoughtStocks);
 
             if(userOwnedStock != null){
                 //user owns this stock
@@ -83,7 +84,7 @@ public class TradeService {
             return null;
         }
 
-        long quantityAfterSell = userOwnedStock.getQuantity() + tradeRequest.getQuantity();
+        long quantityAfterSell = userOwnedStock.getQuantity() - tradeRequest.getQuantity();
         if(quantityAfterSell < 0){
             // exception, user doesn't have enough stocks to sell
             return null;
@@ -94,7 +95,7 @@ public class TradeService {
         // add money
         AddBalanceRequest addBalanceRequest = new AddBalanceRequest();
         addBalanceRequest.setAmount(tradeRequest.getQuantity() * tradeRequest.getUnitCost());
-        balanceService.addUserBalance(userId, addBalanceRequest);
+        balanceService.addUserBalance(userId, addBalanceRequest, AddBalanceReason.SoldStocks);
         return userOwnedStock;
     }
 

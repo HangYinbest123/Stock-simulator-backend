@@ -1,14 +1,16 @@
 package hangyin.dev.stocksimulator.entity;
 
-import org.hibernate.annotations.GenericGenerator;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="SIMULATOR_USER")
 public class User {
+
     @Id
+    @Column(name = "sUserId")
     private String userId;
 
     private String thirdPartyId;
