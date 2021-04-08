@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
+@CrossOrigin
 @RequestMapping(path="user")
 public class UserController {
     @Autowired
@@ -27,7 +28,7 @@ public class UserController {
         if(user != null){
             return new ResponseEntity<>(user, HttpStatus.OK);
         }else{
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.OK);
         }
     }
     // when user login, pass google id
