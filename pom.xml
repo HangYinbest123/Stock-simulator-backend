@@ -12,7 +12,6 @@
   <groupId>hangyin.dev</groupId>  
   <artifactId>stock-simulator</artifactId>  
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>war</packaging>
   <name>stock-simulator</name>  
   <description>Stock simulator backend</description>  
   <properties> 
